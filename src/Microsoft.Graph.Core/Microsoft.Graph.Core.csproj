@@ -4,7 +4,7 @@
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <AssemblyTitle>Microsoft Graph Core Client Library</AssemblyTitle>
     <Authors>Microsoft</Authors>
-    <TargetFrameworks>netstandard1.1;net45;Xamarin.iOS10;Xamarin.Mac20;MonoAndroid70</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;net48</TargetFrameworks>
     <PreserveCompilationContext>false</PreserveCompilationContext>
     <AssemblyName>Microsoft.Graph.Core</AssemblyName>
     <PackageId>Microsoft.Graph.Core</PackageId>
@@ -33,29 +33,6 @@
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-  <!--We manually configure LanguageTargets for Xamarin due to .Net SDK TFMs limitation https://github.com/dotnet/sdk/issues/491 -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'Xamarin.iOS10'">
-    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <DefineConstants>$(DefineConstants);iOS</DefineConstants>
-    <DebugType>Portable</DebugType>
-    <LanguageTargets>$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets</LanguageTargets>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'Xamarin.Mac20'">
-    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <DefineConstants>$(DefineConstants);macOS</DefineConstants>
-    <DebugType>Portable</DebugType>
-    <LanguageTargets>$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets</LanguageTargets>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'MonoAndroid70'">
-    <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <DebugType>Portable</DebugType>
-    <DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
-  <LanguageTargets>$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets</LanguageTargets>
-  </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.1|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard1.1\Microsoft.Graph.Core.xml</DocumentationFile>
@@ -71,44 +48,15 @@
     <DocumentationFile>bin\Debug\net45\Microsoft.Graph.xml</DocumentationFile>
   </PropertyGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
     <Reference Include="System.Net.Http" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="Newtonsoft.Json" Version="6.0.1" />
-  <PackageReference Include="System.ValueTuple" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  <PackageReference Include="System.ValueTuple" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-  <Reference Include="Xamarin.iOS" />
-  <Reference Include="System" />
-  <Reference Include="System.Core" />
-  <Reference Include="System.Xml" />
-  <Reference Include="Microsoft.CSharp" />
-  <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-  <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.Mac20' ">
-  <Reference Include="Xamarin.Mac" />
-  <Reference Include="System" />
-  <Reference Include="System.Core" />
-  <Reference Include="System.Xml" />
-  <Reference Include="Microsoft.CSharp" />
-  <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-  <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid70' ">
-  <Reference Include="Mono.Android" />
-  <Reference Include="System" />
-  <Reference Include="System.Core" />
-  <Reference Include="System.Xml" />
-  <Reference Include="Microsoft.CSharp" />
-  <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-  <PackageReference Include="System.Net.Http" Version="4.3.4" />
   <PackageReference Include="System.ValueTuple" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
